@@ -38,7 +38,7 @@ config/icon="res://icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/totobird_creations.gdscript_plus/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/totobird_creations.gdscript_plus/plugin.cfg", "res://addons/zylann.editor_debugger/plugin.cfg" )
 
 [physics]
 

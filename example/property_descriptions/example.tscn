@@ -4,3 +4,5 @@
 
 [node name="Hover over something in the inspector" type="Node"]
 script = ExtResource( 1 )
+dictionary = {
+}

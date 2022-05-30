@@ -17,6 +17,7 @@ var classes             : Dictionary # Key: Class name.         Value: Script so
 
 func _enter_tree() -> void:
 	plugin.get_editor_interface().get_resource_filesystem().connect("filesystem_changed", self, "update_filesystem")
+	#plugin.get_editor_interface().get_edited_scene_root()
 
 
 func _exit_tree() -> void:
