@@ -11,13 +11,11 @@ var properties  : Array
 
 
 
-func _enter_tree() -> void:
-	inspector = plugin.get_editor_interface().get_inspector().get_child(0)
-
-
-
 func _process(_delta : float) -> void:
-	parse_all_properties(inspector)
+	if (! inspector):
+		inspector = plugin.get_editor_interface().get_inspector().get_child(0)
+	if (inspector):
+		parse_all_properties(inspector)
 
 
 

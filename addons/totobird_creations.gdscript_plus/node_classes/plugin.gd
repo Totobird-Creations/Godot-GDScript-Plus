@@ -26,16 +26,23 @@ func _exit_tree() -> void:
 
 func _ready() -> void:
 	update_filesystem()
-	find_all_scene_trees()
-	find_all_create_dialogs()
 	find_all_create_descriptions()
 
 
 
 func _process(delta : float) -> void:
-	parse_all_scene_trees()
-	parse_all_create_trees()
-	parse_all_create_descriptions()
+	if (len(scene_trees) <= 0):
+		find_all_scene_trees()
+	if (len(scene_trees) > 0):
+		parse_all_scene_trees()
+	if (len(create_dialog_trees) <= 0):
+		find_all_create_dialogs()
+	if (len(create_dialog_trees) > 0):
+		parse_all_create_trees()
+	if (len(create_descriptions) <= 0):
+		find_all_create_descriptions()
+	if (len(create_descriptions) > 0):
+		parse_all_create_descriptions()
 
 
 

@@ -11,14 +11,12 @@ var fname            : String
 
 
 
-func _enter_tree() -> void:
-	find_all_connections()
-
-
-
 func _process(delta : float) -> void:
-	find_fname()
-	parse_all_connection_trees()
+	if (len(connection_trees) <= 0):
+		find_all_connections()
+	if (len(connection_trees) > 0):
+		find_fname()
+		parse_all_connection_trees()
 
 
 
