@@ -7,6 +7,7 @@ var plugin           : EditorPlugin
 
 var connection_trees : Array
 var signals          : Dictionary
+var fname            : String
 
 
 
@@ -16,6 +17,7 @@ func _enter_tree() -> void:
 
 
 func _process(delta : float) -> void:
+	find_fname()
 	parse_all_connection_trees()
 
 
@@ -33,6 +35,18 @@ func _find_all_connection_docks(node : Node = plugin.get_tree().root) -> Array:
 	for child in node.get_children():
 		res += _find_all_connection_docks(child)
 	return res
+
+func find_fname() -> void:
+	fname = ""
+	var node_classes : Object = plugin.sub_plugins.node_classes
+	if (len(node_classes.scene_trees) > 0):
+		var node : TreeItem = node_classes.scene_trees[0].get_selected()
+		if (node):
+			var i : int = node_classes.get_open_script_button_index(node)
+			if (i != -1):
+				var tooltip     := node.get_button_tooltip(0, i)
+				var prefix      := TranslationServer.translate("Open Script:") + " "
+				fname            = tooltip.trim_prefix(prefix)
 
 func parse_all_connection_trees() -> void:
 	for connection_tree in connection_trees:
@@ -56,19 +70,11 @@ func parse_connection_tree(connection_tree : Tree) -> void:
 				help_bit.get_child(0).fit_content_height = true
 
 func parse_connection_tree_item(item : TreeItem) -> void:
-	var node_classes : Object = plugin.sub_plugins.node_classes
-	if (len(node_classes.scene_trees) > 0):
-		var node : TreeItem = node_classes.scene_trees[0].get_selected()
-		if (node):
-			var i : int = node_classes.get_open_script_button_index(node)
-			if (i != -1):
-				var tooltip     := node.get_button_tooltip(0, i)
-				var prefix      := TranslationServer.translate("Open Script:") + " "
-				var fname       := tooltip.trim_prefix(prefix)
-				var signame     := item.get_text(0).split("(")[0]
-				var description := get_signal_description(node_classes.scripts[fname], signame)
-				if (description != ""):
-					signals[signame] = description
+	if (fname != ""):
+		var signame     := item.get_text(0).split("(")[0]
+		var description := get_signal_description(node_classes.scripts[fname], signame)
+		if (description != ""):
+			signals[signame] = description
 	var next := item.get_children()
 	while (next):
 		parse_connection_tree_item(next)
