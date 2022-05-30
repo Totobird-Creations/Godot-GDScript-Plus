@@ -34,7 +34,6 @@ _global_script_class_icons={
 
 config/name="Node Class Descriptions"
 run/main_scene="res://example/node_class_descriptions/example.tscn"
-config/icon="res://icon.png"
 
 [editor_plugins]
 
