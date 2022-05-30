@@ -32,7 +32,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Node Class Descriptions"
+config/name="GDScript Plus"
 run/main_scene="res://example/node_class_descriptions/example.tscn"
 
 [editor_plugins]
