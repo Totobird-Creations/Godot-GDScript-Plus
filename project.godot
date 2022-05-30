@@ -1,0 +1,45 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "MyCustomUncreatableNode",
+"class": "MyCustomNode",
+"language": "GDScript",
+"path": "res://example/node_class_descriptions/custom_node.gd"
+}, {
+"base": "Node",
+"class": "MyCustomUncreatableNode",
+"language": "GDScript",
+"path": "res://example/node_class_descriptions/uncreatable_node.gd"
+}, {
+"base": "Node",
+"class": "TheBestObject",
+"language": "GDScript",
+"path": "res://example/node_class_descriptions/recommended_syntax.gd"
+} ]
+_global_script_class_icons={
+"MyCustomNode": "",
+"MyCustomUncreatableNode": "",
+"TheBestObject": ""
+}
+
+[application]
+
+config/name="Node Class Descriptions"
+run/main_scene="res://example/node_class_descriptions/example.tscn"
+config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/totobird_creations.gdscript_plus/plugin.cfg" )
+
+[physics]
+
+common/enable_pause_aware_picking=true
