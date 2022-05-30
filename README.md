@@ -1,5 +1,4 @@
 # Godot Property Descriptions
-![Screenshot](https://raw.githubusercontent.com/Totobird-Creations/Godot-Property-Descriptions/main/example/screenshot.png)<br />
 An addon for Godot 3.4, written completely in GDScript, that gives GDScript some extra functionality.
 
 ### Features
