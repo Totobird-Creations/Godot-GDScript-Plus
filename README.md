@@ -1,5 +1,5 @@
 # GDScript Plus
-![icon](https://raw.githubusercontent.com/Totobird-Creations/Godot-GDScript-Plus/main/images/icon.png)
+![icon](https://raw.githubusercontent.com/Totobird-Creations/Godot-GDScript-Plus/main/images/icon.png)<br />
 An addon for Godot 3.4, written completely in GDScript, that gives GDScript some extra functionality.
 
 ### Features
