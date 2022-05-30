@@ -72,7 +72,7 @@ func parse_connection_tree(connection_tree : Tree) -> void:
 func parse_connection_tree_item(item : TreeItem) -> void:
 	if (fname != ""):
 		var signame     := item.get_text(0).split("(")[0]
-		var description := get_signal_description(node_classes.scripts[fname], signame)
+		var description := get_signal_description(plugin.sub_plugins.node_classes.scripts[fname], signame)
 		if (description != ""):
 			signals[signame] = description
 	var next := item.get_children()
