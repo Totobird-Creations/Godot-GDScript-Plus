@@ -1,3 +1,8 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://example/node_class_descriptions/custom_node.gd" type="Script" id=1]
 
 [node name="Press create new node" type="Node"]
+
+[node name="MyCustomNode" type="Node" parent="."]
+script = ExtResource( 1 )

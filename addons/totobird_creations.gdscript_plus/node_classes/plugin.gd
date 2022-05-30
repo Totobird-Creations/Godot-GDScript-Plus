@@ -17,7 +17,6 @@ var classes             : Dictionary # Key: Class name.         Value: Script so
 
 func _enter_tree() -> void:
 	plugin.get_editor_interface().get_resource_filesystem().connect("filesystem_changed", self, "update_filesystem")
-	#plugin.get_editor_interface().get_edited_scene_root()
 
 
 func _exit_tree() -> void:
@@ -55,20 +54,17 @@ func parse_scene_tree(scene_tree : Tree) -> void:
 		parse_scene_tree_item(scene_tree.get_root())
 
 func parse_scene_tree_item(item : TreeItem) -> void:
-	var type := ""
-	var i    := 0
-	for j in range(item.get_button_count(0)):
-		var tooltip := item.get_button_tooltip(0, j)
+	for i in range(item.get_button_count(0)):
+		var tooltip := item.get_button_tooltip(0, i)
 		var prefix  := TranslationServer.translate("Open Script:") + " "
 		if (tooltip.begins_with(prefix)):
 			var fname := tooltip.trim_prefix(prefix)
+			if (! scripts.has(fname)):
+				try_load_script(fname)
 			if (scripts.has(fname)):
-				type = get_script_class_name(scripts[fname])
-				i    = j
-	if (type in classes.keys()):
-		var flags := get_script_flags(classes[type])
-		if ("tree_disable_script" in flags):
-			item.set_button_disabled(0, i, true)
+				var flags := get_script_flags(scripts[fname])
+				if ("tree_disable_script" in flags):
+					item.set_button_disabled(0, i, true)
 	var next := item.get_children()
 	while (next):
 		parse_scene_tree_item(next)
@@ -142,9 +138,8 @@ func update_filesystem(path : String = "res:/") -> void:
 	var config := ConfigFile.new()
 	config.load("res://project.godot")
 	for cls in config.get_value("", "_global_script_classes"):
-		var rsr := ResourceLoader.load(cls.path)
-		if (rsr is GDScript):
-			scripts[cls.path]  = rsr.source_code
+		var rsr := try_load_script(cls.path)
+		if (rsr):
 			classes[cls.class] = rsr.source_code
 	"""var dir := Directory.new()
 	if (path == "res:/"):
@@ -167,6 +162,13 @@ func update_filesystem(path : String = "res:/") -> void:
 					scripts[fpath] = resource.source_code
 					classes[type] = resource.source_code
 	dir.list_dir_end()"""
+
+func try_load_script(path : String) -> Resource:
+	var rsr := ResourceLoader.load(path)
+	if (rsr is GDScript):
+		scripts[path]  = rsr.source_code
+		return rsr
+	return null
 
 
 

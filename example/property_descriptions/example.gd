@@ -1,6 +1,8 @@
 tool
 extends Node
 
+#@tree_disable_script
+
 
 
 enum NamedEnum {THING_1, THING_2, ANOTHER_THING = -1}
