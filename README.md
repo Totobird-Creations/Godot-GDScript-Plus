@@ -6,6 +6,7 @@ An addon for Godot 3.4, written completely in GDScript, that gives GDScript some
 - Custom nodes can disable the script button in the scene tree.
 - Custom nodes can disable creation using the create node menu.
 - Custom nodes can hide the script filename shown in the create node menu.
+- Custom nodes can show a description in the create node menu.
 - Export properties on nodes can have tooltips and descriptions.
 
 ### Installation
