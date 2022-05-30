@@ -41,7 +41,7 @@ func _process(delta : float) -> void:
 
 func find_all_scene_trees() -> void:
 	scene_trees = []
-	for node in find_all_trees():
+	for node in plugin.find_all_trees(plugin.get_tree().root, true, true):
 		if (node.get_parent().get_class() == "SceneTreeEditor"):
 			scene_trees.append(node)
 
@@ -54,21 +54,29 @@ func parse_scene_tree(scene_tree : Tree) -> void:
 		parse_scene_tree_item(scene_tree.get_root())
 
 func parse_scene_tree_item(item : TreeItem) -> void:
-	for i in range(item.get_button_count(0)):
+	var i := get_open_script_button_index(item)
+	if (i != -1):
 		var tooltip := item.get_button_tooltip(0, i)
 		var prefix  := TranslationServer.translate("Open Script:") + " "
-		if (tooltip.begins_with(prefix)):
-			var fname := tooltip.trim_prefix(prefix)
-			if (! scripts.has(fname)):
-				try_load_script(fname)
-			if (scripts.has(fname)):
-				var flags := get_script_flags(scripts[fname])
-				if ("tree_disable_script" in flags):
-					item.set_button_disabled(0, i, true)
+		var fname   := tooltip.trim_prefix(prefix)
+		if (! scripts.has(fname)):
+			try_load_script(fname)
+		if (scripts.has(fname)):
+			var flags := get_script_flags(scripts[fname])
+			if ("tree_disable_script" in flags):
+				item.set_button_disabled(0, i, true)
 	var next := item.get_children()
 	while (next):
 		parse_scene_tree_item(next)
 		next = next.get_next()
+
+func get_open_script_button_index(item : TreeItem) -> int:
+	for i in range(item.get_button_count(0)):
+		var tooltip := item.get_button_tooltip(0, i)
+		var prefix  := TranslationServer.translate("Open Script:") + " "
+		if (tooltip.begins_with(prefix)):
+			return i
+	return -1
 
 
 
@@ -76,7 +84,7 @@ func find_all_create_dialogs() -> void:
 	create_dialogs      = _find_all_create_dialogs()
 	create_dialog_trees = []
 	for create_dialog in create_dialogs:
-		create_dialog_trees += find_all_trees(create_dialog)
+		create_dialog_trees += plugin.find_all_trees(create_dialog, true, true)
 
 func _find_all_create_dialogs(node : Node = plugin.get_tree().root) -> Array:
 	var res := []
@@ -116,7 +124,7 @@ func parse_create_tree_item(item : TreeItem) -> void:
 func find_all_create_descriptions() -> void:
 	create_descriptions = []
 	for dialog in create_dialogs:
-		create_descriptions += find_all_editor_help_bits(dialog)
+		create_descriptions += plugin.find_all_editor_help_bits(dialog)
 
 func parse_all_create_descriptions() -> void:
 	var selected : TreeItem
@@ -169,24 +177,6 @@ func try_load_script(path : String) -> Resource:
 		scripts[path]  = rsr.source_code
 		return rsr
 	return null
-
-
-
-func find_all_trees(node : Node = plugin.get_tree().root) -> Array:
-	var res := []
-	if (node is Tree):
-		res.append(node)
-	for child in node.get_children():
-		res += find_all_trees(child)
-	return res
-
-func find_all_editor_help_bits(node : Node) -> Array:
-	var res := []
-	if (node.get_class() == "EditorHelpBit"):
-		res.append(node)
-	for child in node.get_children():
-		res += find_all_editor_help_bits(child)
-	return res
 
 
 

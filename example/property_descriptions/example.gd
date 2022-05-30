@@ -5,6 +5,12 @@ extends Node
 
 
 
+## This is a signal description.
+## More description.
+signal custom_signal(arg_0, arg_1)
+
+
+
 enum NamedEnum {THING_1, THING_2, ANOTHER_THING = -1}
 
 ## An integer without the export arguments.

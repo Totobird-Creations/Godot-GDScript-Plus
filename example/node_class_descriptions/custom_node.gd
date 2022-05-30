@@ -10,6 +10,5 @@ class_name MyCustomNode
 
 
 
-
 func _ready() -> void:
 	print("This node does have a script.")

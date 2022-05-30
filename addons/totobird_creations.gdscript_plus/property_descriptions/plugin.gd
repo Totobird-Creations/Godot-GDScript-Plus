@@ -3,10 +3,11 @@ extends Object
 
 
 
-var plugin     : EditorPlugin
+var plugin      : EditorPlugin
 
-var inspector  : Control
-var properties : Array
+var inspector   : Control
+
+var properties  : Array
 
 
 
@@ -26,20 +27,13 @@ func parse_all_properties(node : Node) -> void:
 			var src         : String = node.get_edited_object().script.source_code
 			var property    : String = node.get_edited_property()
 			var description :        = get_property_description(src, property)
-			var help_bit    :        = get_editor_help_bit(node)
-			if (help_bit):
+			var help_bits   : Array  = plugin.find_all_editor_help_bits(node)
+			if (len(help_bits) > 0):
+				var help_bit : Control = help_bits[0]
 				help_bit.set_text(TranslationServer.translate("Property:") + " [b][u]" + property + "[/u][/b]\n" + description)
 				help_bit.get_child(0).fit_content_height = true
 	for child in node.get_children():
 		parse_all_properties(child)
-
-func get_editor_help_bit(node : Node) -> Node:
-	if (node.get_class() == "EditorHelpBit"):
-		return node
-	for child in node.get_children():
-		var v := get_editor_help_bit(child)
-		if (v): return v
-	return null
 
 
 
