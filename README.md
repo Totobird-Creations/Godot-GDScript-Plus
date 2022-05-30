@@ -51,6 +51,20 @@ func get_property_description(property : String) -> String:
 	return "" # If the return value is empty, no description will be provided.
 ```
 
+__Signal Descriptions__:
+
+In a GDScript file, on a line directly before a `signal` command, add a line starting with `##`. You can have as many lines as you want, as long as there is no separation between them<br />
+Example:
+```gdscript
+## Emitted when the entity begins charging an attack.
+signal charging_attack(seconds)
+```
+```gdscript
+## This will not be a description because there is an empty line below.
+
+signal attack(damage)
+```
+
 __Node Class Descriptions__:
 
 In a GDScript file, on a line directly before the `class_name` command, add a line starting with `##`. You can have as many lines as you want, as long as there is no separation between them<br />
