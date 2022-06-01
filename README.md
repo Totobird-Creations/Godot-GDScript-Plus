@@ -3,17 +3,18 @@
 An addon for Godot 3.4, written completely in GDScript, that gives GDScript some extra functionality.
 
 ### Contents
-1. [Features]()
-2. [Installation]()
-	2.1. [Asset Library]()
-	2.2. [Git Clone]()
-3. [Usage]()
-	3.1. [Property Descriptions]()
-	3.2. [Property Variable Overrides]()
-	3.3. [Signal Descriptions]()
-	3.4. [Node Class Descriptions]()
-	3.5. [Node Tags]()
-4. [License]()
+- [Contents](#contents)
+- [Features](#features)
+- [Installation](#installation)
+	- [Asset Library](#method-1---asset-library)
+	- [Git Clone](#method-1---git-clone)
+- [Usage](#usage)
+	- [Property Descriptions](#property-descriptions)
+	- [Property Variable Overrides](#property-variable-overrides)
+	- [Signal Descriptions](#signal-descriptions)
+	- [Node Class Descriptions](#node-class-descriptions)
+	- [Node Tags](#node-tags)
+- [License](#license)
 
 ### Features
 - Nodes with scripts can disable the script button in the scene tree.
