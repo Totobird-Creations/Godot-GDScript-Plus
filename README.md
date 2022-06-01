@@ -2,6 +2,19 @@
 ![icon](https://raw.githubusercontent.com/Totobird-Creations/Godot-GDScript-Plus/main/images/icon.png)<br />
 An addon for Godot 3.4, written completely in GDScript, that gives GDScript some extra functionality.
 
+### Contents
+1. [Features]()
+2. [Installation]()
+2.1. [Asset Library]()
+2.2. [Git Clone]()
+3. [Usage]()
+3.1. [Property Descriptions]()
+3.2. [Property Variable Overrides]()
+3.3. [Signal Descriptions]()
+3.4. [Node Class Descriptions]()
+3.5. [Node Tags]()
+4. [License]()
+
 ### Features
 - Nodes with scripts can disable the script button in the scene tree.
 - Custom nodes can disable creation using the create node menu.
@@ -13,7 +26,7 @@ An addon for Godot 3.4, written completely in GDScript, that gives GDScript some
 
 ### Installation
 
-__Method 1__:
+##### Method 1 - Asset Library:
 - Open the AssetLib tab in Godot.
 - Search for `GDScript Plus`.
 - Download and install the plugin by `Totobird Creations` (If it isn't there, you will have to use method 2).
@@ -21,7 +34,7 @@ __Method 1__:
 - Enable the `GDScript Plus` plugin.
 - You're done!
 
-__Method 2__:
+##### Method 2 - Git Clone:
 - Download or clone this repository.
 - Move the `addons/totobird_creations.property_descriptions` folder into the `addons` folder in your project.
 - Open your project settings and go to the `Plugins` tab.
@@ -30,7 +43,7 @@ __Method 2__:
 
 ### Usage
 
-__Property Descriptions__:<br />
+##### Property Descriptions:
 ![screenshot](https://raw.githubusercontent.com/Totobird-Creations/Godot-GDScript-Plus/main/images/screenshot_property_description.png)<br />
 
 In a GDScript file, on a line directly before an `export` command, add a line starting with `##`. You can have as many lines as you want, as long as there is no separation between them<br />
@@ -53,10 +66,10 @@ func get_property_description(property : String) -> String:
 	return "" # If the return value is empty, no description will be provided.
 ```
 
-__Property Variables__:<br />
+##### Property Variable Overrides:
 ![screenshot](https://raw.githubusercontent.com/Totobird-Creations/Godot-GDScript-Plus/main/images/screenshot_variable_override.png)<br />
 
-Property variable names (The `Property: my_property_name` thing), can be modified using the `get_property_variable` method.
+Property variable names (The `Property: my_property_name` thing), can be modified using the `get_property_variable` method. Useful for when your property path is something like `networking/port`, but the variable storing the value is `networking_port`.
 ```gdscript
 func get_property_variable(property : String) -> String:
 	if (property == "player_resistance"):
@@ -64,7 +77,7 @@ func get_property_variable(property : String) -> String:
 	return "" # If the return value is empty, the variable will not be overridden
 ```
 
-__Signal Descriptions__:<br />
+##### Signal Descriptions:
 ![screenshot](https://raw.githubusercontent.com/Totobird-Creations/Godot-GDScript-Plus/main/images/screenshot_signal_description.png)<br />
 
 In a GDScript file, on a line directly before a `signal` command, add a line starting with `##`. You can have as many lines as you want, as long as there is no separation between them<br />
@@ -79,7 +92,7 @@ signal charging_attack(seconds)
 signal attack(damage)
 ```
 
-__Node Class Descriptions__:<br />
+##### Node Class Descriptions:
 ![screenshot](https://raw.githubusercontent.com/Totobird-Creations/Godot-GDScript-Plus/main/images/screenshot_custom_node_description.png)<br />
 
 In a GDScript file, on a line directly before the `class_name` command, add a line starting with `##`. You can have as many lines as you want, as long as there is no separation between them<br />
@@ -95,9 +108,9 @@ class_name Entity
 class_name PlayerEntity
 ```
 
-__Node Class Tags__:
+##### Node Tags:
 
-In a GDScript file, You can include lines starting with `#@`, and followed by an identifier to change how to custom class acts in the editor<br />
+In a GDScript file, You can include lines starting with `#@`, and followed by an identifier to change how the node containing the script, acts in the editor<br />
 - `tree_disable_script` : Disables the open script button in the scene tree.<br />
 ![screenshot](https://raw.githubusercontent.com/Totobird-Creations/Godot-GDScript-Plus/main/images/screenshot_custom_node_noscript.png)<br />
 - `create_disable` : Similar to the `CanvasItem` node, this will prevent the node from being created using the create node menu. It can still be used by manually applying the script. (Top item in the image below)<br />
