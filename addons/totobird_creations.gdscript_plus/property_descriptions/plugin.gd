@@ -23,19 +23,29 @@ func parse_all_properties(node : Node) -> void:
 	if (node is EditorProperty):
 		if (node.get_edited_object().script is GDScript):
 			var property    : String = node.get_edited_property()
-			var description : String
+			var text_edited : bool   = false
+			var text        : String = TranslationServer.translate("Property:") + " [b][u]" + property + "[/u][/b]"
+			var description : String = ""
+			if (node.get_edited_object().has_method("get_property_variable")):
+				var v = node.get_edited_object().get_property_variable(property)
+				if (v is String && v != ""):
+					text_edited = true
+					text        = TranslationServer.translate("Property:") + " [b][u]" + v + "[/u][/b]"
 			if (node.get_edited_object().has_method("get_property_description")):
 				var v = node.get_edited_object().get_property_description(property)
-				if (v is String):
+				if (v is String && v != ""):
 					description = v
 			if (description == ""):
 				var src     : String = node.get_edited_object().script.source_code
 				description          = get_property_description(src, property)
 			if (description != ""):
+				text_edited  = true
+				text        += "\n" + description
+			if (text_edited):
 				var help_bits : Array = plugin.find_all_editor_help_bits(node)
 				if (len(help_bits) > 0):
 					var help_bit : Control = help_bits[0]
-					help_bit.set_text(TranslationServer.translate("Property:") + " [b][u]" + property + "[/u][/b]\n" + description)
+					help_bit.set_text(text)
 					help_bit.get_child(0).fit_content_height = true
 	for child in node.get_children():
 		parse_all_properties(child)

@@ -7,6 +7,7 @@ An addon for Godot 3.4, written completely in GDScript, that gives GDScript some
 - Custom nodes can disable creation using the create node menu.
 - Custom nodes can hide the script filename shown in the create node menu.
 - Custom nodes can show a description in the create node menu.
+- Export properties on nodes can show different property variables.
 - Export properties on nodes can have tooltips and descriptions.
 - Signals on nodes can have tooltips and descriptions.
 
@@ -49,6 +50,13 @@ func get_property_description(property : String) -> String:
 	if (property == "player_strength"):
 		return "How much damage the player deals."
 	return "" # If the return value is empty, no description will be provided.
+```
+Property variable names (The `Property: my_property_name` thing), can be modified using the `get_property_variable` method.
+```gdscript
+func get_property_variable(property : String) -> String:
+	if (property == "player_resistance"):
+		return "player_defence"
+	return "" # If the return value is empty, the variable will not be overridden
 ```
 
 __Signal Descriptions__:

@@ -117,3 +117,10 @@ func get_property_description(property : String) -> String:
 	if (property == "dictionary"):
 		return "The get_property_description method overwrote the dictionary description."
 	return ""
+
+
+
+func get_property_variable(property : String) -> String:
+	if (property == "object"):
+		return "amazing_override"
+	return ""
