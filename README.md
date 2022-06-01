@@ -30,7 +30,7 @@ __Method 2__:
 
 ### Usage
 
-__Property Descriptions__:
+__Property Descriptions__:<br />
 ![screenshot](https://raw.githubusercontent.com/Totobird-Creations/Godot-GDScript-Plus/main/images/screenshot_property_description.png)<br />
 
 In a GDScript file, on a line directly before an `export` command, add a line starting with `##`. You can have as many lines as you want, as long as there is no separation between them<br />
@@ -53,7 +53,7 @@ func get_property_description(property : String) -> String:
 	return "" # If the return value is empty, no description will be provided.
 ```
 
-__Property Variables__:
+__Property Variables__:<br />
 ![screenshot](https://raw.githubusercontent.com/Totobird-Creations/Godot-GDScript-Plus/main/images/screenshot_variable_override.png)<br />
 
 Property variable names (The `Property: my_property_name` thing), can be modified using the `get_property_variable` method.
@@ -64,7 +64,7 @@ func get_property_variable(property : String) -> String:
 	return "" # If the return value is empty, the variable will not be overridden
 ```
 
-__Signal Descriptions__:
+__Signal Descriptions__:<br />
 ![screenshot](https://raw.githubusercontent.com/Totobird-Creations/Godot-GDScript-Plus/main/images/screenshot_signal_description.png)<br />
 
 In a GDScript file, on a line directly before a `signal` command, add a line starting with `##`. You can have as many lines as you want, as long as there is no separation between them<br />
@@ -79,7 +79,7 @@ signal charging_attack(seconds)
 signal attack(damage)
 ```
 
-__Node Class Descriptions__:
+__Node Class Descriptions__:<br />
 ![screenshot](https://raw.githubusercontent.com/Totobird-Creations/Godot-GDScript-Plus/main/images/screenshot_custom_node_description.png)<br />
 
 In a GDScript file, on a line directly before the `class_name` command, add a line starting with `##`. You can have as many lines as you want, as long as there is no separation between them<br />
@@ -98,11 +98,11 @@ class_name PlayerEntity
 __Node Class Tags__:
 
 In a GDScript file, You can include lines starting with `#@`, and followed by an identifier to change how to custom class acts in the editor<br />
-- `tree_disable_script` : Disables the open script button in the scene tree.
+- `tree_disable_script` : Disables the open script button in the scene tree.<br />
 ![screenshot](https://raw.githubusercontent.com/Totobird-Creations/Godot-GDScript-Plus/main/images/screenshot_custom_node_noscript.png)<br />
-- `create_disable` : Similar to the `CanvasItem` node, this will prevent the node from being created using the create node menu. It can still be used by manually applying the script. (Top item in the image below)
+- `create_disable` : Similar to the `CanvasItem` node, this will prevent the node from being created using the create node menu. It can still be used by manually applying the script. (Top item in the image below)<br />
 ![screenshot](https://raw.githubusercontent.com/Totobird-Creations/Godot-GDScript-Plus/main/images/screenshot_custom_node.png)<br />
-- `create_hide_script` : In the create node menu, the script filename will not be displayed. (Bottom item in the image below)
+- `create_hide_script` : In the create node menu, the script filename will not be displayed. (Bottom item in the image below)<br />
 ![screenshot](https://raw.githubusercontent.com/Totobird-Creations/Godot-GDScript-Plus/main/images/screenshot_custom_node.png)<br />
 Example:
 ```gdscript
