@@ -7,7 +7,7 @@ An addon for Godot 3.4, written completely in GDScript, that gives GDScript some
 - [Features](#features)
 - [Installation](#installation)
 	- [Asset Library](#method-1---asset-library)
-	- [Git Clone](#method-1---git-clone)
+	- [Git Clone](#method-2---git-clone)
 - [Usage](#usage)
 	- [Property Descriptions](#property-descriptions)
 	- [Property Variable Overrides](#property-variable-overrides)
