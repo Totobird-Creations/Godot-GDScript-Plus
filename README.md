@@ -5,14 +5,14 @@ An addon for Godot 3.4, written completely in GDScript, that gives GDScript some
 ### Contents
 1. [Features]()
 2. [Installation]()
-2.1. [Asset Library]()
-2.2. [Git Clone]()
+	2.1. [Asset Library]()
+	2.2. [Git Clone]()
 3. [Usage]()
-3.1. [Property Descriptions]()
-3.2. [Property Variable Overrides]()
-3.3. [Signal Descriptions]()
-3.4. [Node Class Descriptions]()
-3.5. [Node Tags]()
+	3.1. [Property Descriptions]()
+	3.2. [Property Variable Overrides]()
+	3.3. [Signal Descriptions]()
+	3.4. [Node Class Descriptions]()
+	3.5. [Node Tags]()
 4. [License]()
 
 ### Features
