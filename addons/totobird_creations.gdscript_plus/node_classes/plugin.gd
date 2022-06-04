@@ -152,10 +152,11 @@ func update_filesystem(path : String = "res:/") -> void:
 	classes = {}
 	var config := ConfigFile.new()
 	config.load("res://project.godot")
-	for cls in config.get_value("", "_global_script_classes"):
-		var rsr := try_load_script(cls.path)
-		if (rsr):
-			classes[cls.class] = rsr.source_code
+	if (config.has_section("") && config.has_key("_global_script_classes")):
+		for cls in config.get_value("", "_global_script_classes"):
+			var rsr := try_load_script(cls.path)
+			if (rsr):
+				classes[cls.class] = rsr.source_code
 	"""var dir := Directory.new()
 	if (path == "res:/"):
 		dir.open("res://")
